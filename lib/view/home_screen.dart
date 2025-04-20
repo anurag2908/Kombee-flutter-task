@@ -13,67 +13,70 @@ class HomeScreen extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          actionsPadding: EdgeInsets.all(15),
-          leading: Padding(
-            padding: const EdgeInsets.only(
-              left: 25,
-            ),
-            child: Image.asset(
-              'asset/image/logo.png',
-              height: 50,
-              width: 200,
-            ),
-          ),
-          actions: [
-            Icon(
-              Icons.search,
-              size: 25,
-              color: Colors.black,
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Icon(Icons.shopping_bag_outlined, size: 25),
-                Positioned(
-                  top: -5,
-                  right: 0,
-                  child: Container(
-                    padding: EdgeInsets.all(3),
-                    decoration: BoxDecoration(
-                      color: Color(0xff696e73),
-                      shape: BoxShape.circle,
-                    ),
-                    constraints: BoxConstraints(
-                      minWidth: 12,
-                      minHeight: 12,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '1',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
+        backgroundColor: Colors.white,
         body: Obx(
           () => SingleChildScrollView(
             child: Column(
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        'asset/image/fab.png',
+                        height: 50,
+                        width: 200,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.search,
+                            size: 25,
+                            color: Colors.black,
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Icon(Icons.shopping_bag_outlined, size: 25),
+                              Positioned(
+                                top: -5,
+                                right: 0,
+                                child: Container(
+                                  padding: EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xff696e73),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  constraints: BoxConstraints(
+                                    minWidth: 12,
+                                    minHeight: 12,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      '1',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
                 // Top Menu
                 SizedBox(
                   height: 130,
@@ -317,6 +320,7 @@ class HomeScreen extends GetView<HomeController> {
                   unstitchedList: controller.unstitchedList,
                 ),
 
+                // Boutique Collection
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
                   child: Text(

@@ -74,42 +74,79 @@ class CategoryScreen extends GetView<CategoryScreenController> {
                 itemCount: controller.shopcateegoryList.length,
                 itemBuilder: (context, index) {
                   final data = controller.shopcateegoryList[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 3),
-                    child: SizedBox(
-                      height: 150,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: getColorFromHex(data.tintColor ?? ""),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: Text(
-                                    data.name ?? "",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
+                  return Container(
+                    color: getColorFromHex(data.tintColor ?? ""),
+                    margin: EdgeInsets.only(bottom: 3),
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 3),
+                      child: SizedBox(
+                        height: 150,
+                        child: Row(
+                          children: [
+                            // Expanded(
+                            //   child: Container(
+                            //     decoration: BoxDecoration(
+                            //       borderRadius: BorderRadius.only(
+                            //           bottomRight: Radius.circular(50),
+                            //           topRight: Radius.circular(50)),
+                            //       border: Border(
+                            //           right: BorderSide(
+                            //               width: 3, color: Colors.grey)),
+                            //       color: getColorFromHex(data.tintColor ?? ""),
+                            //     ),
+                            //     child: Padding(
+                            //       padding: const EdgeInsets.all(8.0),
+                            //       child: Center(
+                            //         child: Text(
+                            //           data.name ?? "",
+                            //           style: TextStyle(
+                            //             color: Colors.black,
+                            //             fontSize: 20,
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+
+                            Expanded(
+                              child: ClipPath(
+                                clipper: LeftCurveClipper(),
+                                child: Container(
+                                  color: getColorFromHex(data.tintColor ?? ""),
+                                  child: Center(
+                                    child: Text(
+                                      data.name ?? "",
+                                      style: const TextStyle(fontSize: 20),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: 150,
-                              decoration: BoxDecoration(),
-                              child: Image.network(
-                                data.image ?? "",
-                                fit: BoxFit.cover,
+                            // Expanded(
+                            //   child: Container(
+                            //     height: 150,
+                            //     decoration: BoxDecoration(),
+                            //     child: Image.network(
+                            //       data.image ?? "",
+                            //       fit: BoxFit.cover,
+                            //     ),
+                            //   ),
+                            // ),
+
+                            // RIGHT IMAGE WITH OPPOSITE CURVE
+                            Expanded(
+                              child: Container(
+                                height: 150,
+                                child: Image.network(
+                                  data.image ?? "", // Replace with your image
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -123,16 +160,15 @@ class CategoryScreen extends GetView<CategoryScreenController> {
   }
 }
 
-class CurveClipper extends CustomClipper<Path> {
+class LeftCurveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = Path();
-    path.moveTo(0, 0);
-    path.lineTo(size.width * 0.5, 0);
+    Path path = Path();
+    path.lineTo(size.width - 50, 0);
     path.quadraticBezierTo(
-      size.width * 1.2,
+      size.width,
       size.height / 2,
-      size.width * 0.7,
+      size.width - 50,
       size.height,
     );
     path.lineTo(0, size.height);
@@ -144,24 +180,66 @@ class CurveClipper extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
-class ReverseCurveClipper extends CustomClipper<Path> {
+class RightCurveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = Path();
-    path.moveTo(size.width * 0.3, 0);
-    path.lineTo(size.width, 0);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width * 0.3, size.height);
+    final path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(size.width - 50, 0);
     path.quadraticBezierTo(
-      -size.width * 0.2,
+      size.width,
       size.height / 2,
-      size.width * 0.3,
-      0,
+      size.width - 50,
+      size.height,
     );
-    path.close();
+    path.lineTo(0, size.height);
+    path.quadraticBezierTo(50, size.height / 2, 0, 0);
     return path;
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }
+
+// class CurveClipper extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     var path = Path();
+//     path.moveTo(0, 0);
+//     path.lineTo(size.width * 0.5, 0);
+//     path.quadraticBezierTo(
+//       size.width * 1.2,
+//       size.height / 2,
+//       size.width * 0.7,
+//       size.height,
+//     );
+//     path.lineTo(0, size.height);
+//     path.close();
+//     return path;
+//   }
+
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+// }
+
+// class ReverseCurveClipper extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     var path = Path();
+//     path.moveTo(size.width * 0.3, 0);
+//     path.lineTo(size.width, 0);
+//     path.lineTo(size.width, size.height);
+//     path.lineTo(size.width * 0.3, size.height);
+//     path.quadraticBezierTo(
+//       -size.width * 0.2,
+//       size.height / 2,
+//       size.width * 0.3,
+//       0,
+//     );
+//     path.close();
+//     return path;
+//   }
+
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+// }

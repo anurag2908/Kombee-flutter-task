@@ -41,6 +41,7 @@ class OccasionDesignSection extends StatelessWidget {
         child: AspectRatio(
           aspectRatio: 1,
           child: Stack(
+            alignment: Alignment(0, 1),
             children: [
               Container(
                 height: 200,
@@ -52,49 +53,39 @@ class OccasionDesignSection extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                child: Container(
-                  color: Color(0xffe6f5fe).withOpacity(0.8),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          data.name ?? "",
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              data.subName ?? "",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 11,
-                              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    color: Color(0xffe6f5fe).withOpacity(0.8),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data.name ?? "",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
                             ),
-                            Text(
-                              "+EXPLORE",
-                              style: TextStyle(
-                                color: Colors.white54,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
+                          ),
+                          Text(
+                            data.subName ?? "",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               )
             ],
           ),
