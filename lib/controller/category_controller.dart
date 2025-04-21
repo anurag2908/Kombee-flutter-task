@@ -11,7 +11,7 @@ class CategoryScreenController extends GetxController {
   @override
   void onInit() {
     middleshop();
-    categoryapis();
+    categoryrespo();
     super.onInit();
   }
 
@@ -27,7 +27,7 @@ class CategoryScreenController extends GetxController {
     }
   }
 
-  Future<void> categoryapis() async {
+  Future<void> categoryrespo() async {
     try {
       var result = await RestService().categoryapi();
       if (result.status?.isNotEmpty ?? false) {

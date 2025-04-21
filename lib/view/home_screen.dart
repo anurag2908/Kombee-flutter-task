@@ -124,7 +124,11 @@ class HomeScreen extends GetView<HomeController> {
                 // Slider Based on Selection
                 Obx(() {
                   if (controller.menulist.isEmpty) {
-                    return Center(child: Text("No menu items available"));
+                    return Center(
+                        child: Text(
+                      "No menu items available",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    ));
                   }
 
                   final selectedMenu = controller.menulist[controller

@@ -39,9 +39,9 @@ Future<void> alertDialog(String title, String des, {Function? ontap}) async {
 }
 
 Color getColorFromHex(String hexColor) {
-    hexColor = hexColor.replaceAll("#", "");
-    if (hexColor.length == 6) {
-      hexColor = "FF$hexColor"; // add full opacity if alpha not provided
-    }
-    return Color(int.parse("0x$hexColor"));
+  hexColor = hexColor.replaceAll("#", "");
+  if (hexColor.length == 6) {
+    hexColor = "FF$hexColor"; // add full opacity if alpha not provided
   }
+  return Color(int.parse("0x$hexColor"));
+}
