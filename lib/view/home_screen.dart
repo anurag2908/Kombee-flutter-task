@@ -28,7 +28,6 @@ class HomeScreen extends GetView<HomeController> {
                       Image.asset(
                         'asset/image/fab.png',
                         height: 50,
-                        width: 200,
                       ),
                       Row(
                         children: [
